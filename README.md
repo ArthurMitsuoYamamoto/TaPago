@@ -4,7 +4,7 @@ API do projeto TaPago - controle de Gastos Pessoais
 ## Tarefas
 
 - [ ] CRUD de Categorias
-- [ ] CRUD de Moviemntações
+- [ ] CRUD de Movimentações
 - [ ] CRUD de Usuários
 - [ ] Dashboard
 
