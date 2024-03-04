@@ -40,6 +40,8 @@ public class CategoriaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(categoria);
     }
     
+
+    // Refatorar
     @GetMapping("{id}")
     public ResponseEntity<Categoria> show(@PathVariable Long id){
         log.info("buscando categoria com id {}", id);
