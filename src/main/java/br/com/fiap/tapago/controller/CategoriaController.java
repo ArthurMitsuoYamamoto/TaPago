@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.tapago.model.Categoria;
@@ -41,31 +42,24 @@ public class CategoriaController {
 
 
    @PostMapping
-     public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
+   @ResponseStatus(HttpStatus.CREATED)
+     public Categoria create(@RequestBody Categoria categoria) {
         log.info("Cadastrando categoria {}", categoria);
-        repository.save(categoria);
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoria);
+       return repository.save(categoria);
      }
-    }
+
     
 
-//     @GetMapping("{id}")
-//     public ResponseEntity<Categoria> show(@PathVariable Long id) {
-//         log.info("buscando categoria com id {}", id);
+    @GetMapping("{id}")
+    public ResponseEntity<Categoria> show(@PathVariable Long id) {
+        log.info("buscando categoria com id {}", id);
+        
+        return repository
+                .findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
-//         // for(Categoria categoria: repository){
-//         // if (categoria.id().equals(id))
-//         // return ResponseEntity.status(HttpStatus.OK).body(categoria);
-//         // }
-
-//         var categoriaEncontrada = getCategoriaById(id);
-
-//         if (categoriaEncontrada.isEmpty())
-//             return ResponseEntity.notFound().build();
-
-//         return ResponseEntity.ok(categoriaEncontrada.get());
-
-//     }
 
 //     @DeleteMapping("{id}")
 //     public ResponseEntity<Object> destroy(@PathVariable Long id) {
@@ -119,3 +113,4 @@ public class CategoriaController {
 //     }
 
 // }
+}
