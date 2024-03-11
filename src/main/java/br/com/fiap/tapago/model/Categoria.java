@@ -1,14 +1,17 @@
 package br.com.fiap.tapago.model;
 
-import java.util.Random;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Data;
 
-public record Categoria(Long id, String nome, String icone) {
-    public Categoria(Long id, String nome, String icone){
-        this.id = (id == null)? Math.abs( new Random().nextLong() ) : id;
-        this.nome = nome;
-        this.icone = icone;
-    }
-}
-// imutável
-
+@Data
+@Entity
+public class Categoria {
     
+    @Id
+    private Long id;
+    private String nome;
+    private String icone;
+   
+}
+
