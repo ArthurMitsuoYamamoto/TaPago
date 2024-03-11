@@ -38,14 +38,16 @@ public class CategoriaController {
     public List<Categoria> index() {
         return repository.findAll();
     }
-}
 
-//     @PostMapping
-//     public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
-//         log.info("Cadastrando categoria {}", categoria);
-//         repository.add(categoria);
-//         return ResponseEntity.status(HttpStatus.CREATED).body(categoria);
-//     }
+
+   @PostMapping
+     public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
+        log.info("Cadastrando categoria {}", categoria);
+        repository.save(categoria);
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoria);
+     }
+    }
+    
 
 //     @GetMapping("{id}")
 //     public ResponseEntity<Categoria> show(@PathVariable Long id) {
